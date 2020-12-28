@@ -1,0 +1,22 @@
+resources:
+  - name: git_jfrog
+    type: GitRepo
+    configuration:
+      gitProvider: s_GithubEnterprise
+      path: Testjfrog/Jfrog_pipelines
+      branches:     
+        include: master
+
+pipelines:
+
+  - name: jfrog_pipelines
+    steps:
+
+      - name: jfrog_pipelines1
+        type: Bash 
+        configuration:   
+          inputResources:          
+            - name: git_jfrog         
+        execution:
+          onExecute:
+            - printenv 
